@@ -12,7 +12,7 @@
 :root {
   --bg: #04050f; --bg1: #080a18; --bg2: #0d1020;
   --a1: #00d4ff; --a2: #7b2fff; --a3: #ff2d78; --a4: #00ff9d; --a5: #ffb800;
-  --tp: #f0f2ff; --ts: #6b7aad; --tm: #3a4470; --td: #1e2545;
+  --tp: #f0f2ff; --ts: #8b9bc0; --tm: #4a5580; --td: #2e3560;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
@@ -454,7 +454,7 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
 .ti-dot{width:3px;height:3px;border-radius:50%;background:rgba(0,212,255,.2)}
 
 /* ── FOOTER ── */
-.footer{border-top:1px solid rgba(255,255,255,.04);padding:14px 56px;display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
+.footer{border-top:1px solid rgba(255,255,255,.04);padding:20px 56px 28px;display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
 .ftl{font-family:'DM Mono',monospace;font-size:10px;color:var(--tm)}
 .ftc{font-family:'Sora',sans-serif;font-size:11px;color:rgba(255,255,255,.14);font-style:italic}
 
@@ -713,6 +713,27 @@ window.addEventListener('scroll',()=>{
   });
 },{passive:true});
 document.querySelectorAll('.pip').forEach((p,i)=>{p.addEventListener('click',()=>{const el=document.getElementById(sceneIds[i]);if(el)el.scrollIntoView({behavior:'smooth'})})});
+
+// Count-up animation for stat numbers
+const countUp = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target;
+  const text = el.textContent.trim();
+  const match = text.match(/^(\d+)(%?)$/);
+  if (!match) return;
+  const target = parseInt(match[1]);
+  const suffix = match[2] || '';
+  let current = 0;
+  const duration = 1200;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) { current = target; clearInterval(timer); }
+    el.textContent = Math.round(current) + suffix;
+  }, 16);
+  countUp.unobserve(el);
+}), { threshold: 0.5 });
+document.querySelectorAll('.q-stat-n').forEach(el => countUp.observe(el));
 </script>
 </body>
 </html>

@@ -420,9 +420,8 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
 .s4-pkt-v{font-size:13px;font-weight:500;color:var(--tp)}
 
 /* ══════════════════════════════════════
-   S5 — CTA (reveal treatment)
+   S5 — Base (overridden below in redesign block)
 ══════════════════════════════════════ */
-.s5{text-align:center;padding:96px 52px;background:var(--bg)}
 .s5-bg{position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(0,212,255,.055),transparent 60%);pointer-events:none}
 
 /* Staggered word reveal */
@@ -437,13 +436,6 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
   color:var(--tp);
 }
 .s5-w.dim{color:rgba(240,242,255,.18);font-weight:200}
-
-.s5-sub{
-  font-size:17px;font-weight:300;color:var(--ts);
-  line-height:1.7;max-width:500px;margin:0 auto 44px;position:relative;z-index:1;
-}
-.s5-btns{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;position:relative;z-index:1}
-.s5-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--td);letter-spacing:.08em;position:relative;z-index:1}
 
 /* Buttons */
 .btn-main{
@@ -578,7 +570,155 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
   .hiw-step{border-right:none;border-bottom:1px solid rgba(255,255,255,.04)}
   .hiw-step:last-child{border-bottom:none}
   .trust-bar{flex-wrap:wrap;gap:12px}
+  .s5-showcase{margin-bottom:24px}
+  .s5-showcase-q{font-size:clamp(14px,2.5vw,18px)}
+  .s5-artifacts{flex-wrap:wrap;gap:10px}
+  .s5-artifact-sep{display:none}
+  .s5-trust{flex-wrap:wrap}
+  .s5-cta-wrap{flex-direction:column;align-items:center}
 }
+
+/* ══════════════════════════════════════
+   S5 — INTERACTIVE CTA REDESIGN
+══════════════════════════════════════ */
+.s5{text-align:center;padding:120px 52px 96px;background:var(--bg);position:relative;overflow:hidden}
+
+/* Particle canvas */
+.s5-particles{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+}
+
+/* Smooth gradient transition from S4 */
+.s5::before{
+  content:'';position:absolute;top:-120px;left:0;right:0;height:120px;
+  background:linear-gradient(180deg,transparent,var(--bg));
+  pointer-events:none;z-index:2;
+}
+
+/* Decision showcase — rotating questions */
+.s5-showcase{
+  margin-bottom:40px;position:relative;z-index:1;
+}
+.s5-showcase-label{
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--td);
+  margin-bottom:14px;
+}
+.s5-showcase-q{
+  display:inline-flex;align-items:center;
+  font-family:'Sora',sans-serif;font-size:clamp(16px,2.2vw,22px);
+  font-weight:300;color:var(--ts);
+  letter-spacing:-.3px;line-height:1.4;
+  padding:14px 28px;
+  border:1px solid rgba(0,212,255,.08);
+  border-radius:10px;
+  background:rgba(0,212,255,.02);
+  max-width:680px;
+  min-height:56px;
+  transition:border-color .5s,background .5s;
+}
+.s5-showcase-q:hover{
+  border-color:rgba(0,212,255,.18);
+  background:rgba(0,212,255,.04);
+}
+.s5-showcase-text{
+  display:inline;
+}
+.s5-showcase-cursor{
+  display:inline-block;
+  width:2px;height:1.1em;
+  background:var(--a1);
+  margin-left:2px;
+  vertical-align:text-bottom;
+  animation:blink 1s step-end infinite;
+}
+
+/* Governance artifacts — animated pills */
+.s5-artifacts{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-bottom:32px;position:relative;z-index:1;
+}
+.s5-artifact{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:6px;
+  background:rgba(255,255,255,.02);
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1),border-color .3s,background .3s;
+}
+.s5-artifact.visible{
+  opacity:1;transform:none;
+}
+.s5-artifact:hover{
+  border-color:rgba(0,212,255,.2);
+  background:rgba(0,212,255,.04);
+}
+.s5-artifact-icon{
+  font-size:11px;
+  background:linear-gradient(135deg,var(--a1),var(--a2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.s5-artifact-name{
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ts);
+}
+.s5-artifact-sep{
+  width:3px;height:3px;border-radius:50%;
+  background:rgba(0,212,255,.15);flex-shrink:0;
+}
+
+/* Sub text */
+.s5-sub{
+  font-size:16px;font-weight:300;color:var(--ts);
+  line-height:1.8;max-width:520px;margin:0 auto 40px;position:relative;z-index:1;
+}
+
+/* CTA wrap */
+.s5-cta-wrap{
+  display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+  margin-bottom:28px;position:relative;z-index:1;
+}
+
+/* Magnetic glow on main CTA */
+.s5-btn-main{
+  animation:gradFlow 5s ease-in-out infinite,glowPulse 3s ease-in-out infinite;
+}
+
+/* Demo button */
+.s5-btn-demo{
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:14px 22px;
+  border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.3);
+  text-decoration:none;border-radius:6px;
+  transition:all .25s;
+}
+.s5-btn-demo:hover{color:var(--a1);border-color:rgba(0,212,255,.25)}
+
+/* Trust pills */
+.s5-trust{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-bottom:24px;position:relative;z-index:1;
+}
+.s5-pill{
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--tm);
+  padding:6px 14px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:100px;
+  background:rgba(255,255,255,.015);
+  transition:border-color .3s;
+}
+.s5-pill:hover{
+  border-color:rgba(0,212,255,.15);
+  color:var(--ts);
+}
+
+.s5-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--td);letter-spacing:.08em;position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -586,7 +726,7 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
 <nav class="nav" id="nav">
   <div class="nav-logo"><img src="/stratos-icon.svg" alt="StratOS" style="width:24px;height:24px;margin-right:6px;vertical-align:middle;filter:none">StratOS</div>
   <div class="nav-r">
-    <a href="mailto:hello@stratos.lucidorg.com" class="nav-cta">Book Demo</a>
+    <a href="https://cal.com/stratos/demo" class="nav-cta">Book Demo</a>
   </div>
 </nav>
 
@@ -793,10 +933,22 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
 
 <div class="ticker-wrap"><div class="ticker-track" id="ticker"></div></div>
 
-<!-- ══ S5: CTA — staggered word reveal ══ -->
+<!-- ══ S5: CTA — Interactive Decision Engine ══ -->
 <section class="scene s5" id="s5">
   <div class="s5-bg"></div>
-  <div class="s5-words R">
+  <canvas class="s5-particles" id="s5Particles"></canvas>
+
+  <!-- Rotating decision showcase -->
+  <div class="s5-showcase R">
+    <div class="s5-showcase-label">Decisions made with StratOS</div>
+    <div class="s5-showcase-q" id="s5Showcase">
+      <span class="s5-showcase-text" id="s5ShowcaseText">Should we acquire the Series B competitor before Q3?</span>
+      <span class="s5-showcase-cursor"></span>
+    </div>
+  </div>
+
+  <!-- Headline -->
+  <div class="s5-words R d1">
     <div class="s5-word-row">
       <div class="s5-w dim">Your next decision</div>
     </div>
@@ -805,15 +957,54 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
       <div class="s5-w grad-aurora">the right room.</div>
     </div>
   </div>
-  <p class="s5-sub R d2">Submit your question. A full executive panel deliberates. Multiple rounds. Five governance artifacts. First one free — no setup, no commitment.</p>
-  <div class="s5-btns R d3">
-    <a href="https://app.stratos.lucidorg.com" class="btn-main">
-      Start a Decision Free
+
+  <!-- Animated governance artifacts -->
+  <div class="s5-artifacts R d2" id="s5Artifacts">
+    <div class="s5-artifact" data-delay="0">
+      <div class="s5-artifact-icon">&#9670;</div>
+      <div class="s5-artifact-name">Decision Packet</div>
+    </div>
+    <div class="s5-artifact-sep"></div>
+    <div class="s5-artifact" data-delay="1">
+      <div class="s5-artifact-icon">&#9674;</div>
+      <div class="s5-artifact-name">Confidence Scores</div>
+    </div>
+    <div class="s5-artifact-sep"></div>
+    <div class="s5-artifact" data-delay="2">
+      <div class="s5-artifact-icon">&#9651;</div>
+      <div class="s5-artifact-name">Dissent Record</div>
+    </div>
+    <div class="s5-artifact-sep"></div>
+    <div class="s5-artifact" data-delay="3">
+      <div class="s5-artifact-icon">&#9679;</div>
+      <div class="s5-artifact-name">Conditions Log</div>
+    </div>
+    <div class="s5-artifact-sep"></div>
+    <div class="s5-artifact" data-delay="4">
+      <div class="s5-artifact-icon">&#9733;</div>
+      <div class="s5-artifact-name">Audit Trail</div>
+    </div>
+  </div>
+
+  <p class="s5-sub R d2">Submit your question. A full executive panel deliberates in multiple rounds.<br>Five board-grade governance artifacts. Under one hour.</p>
+
+  <!-- Two-tier CTA -->
+  <div class="s5-cta-wrap R d3">
+    <a href="https://app.stratos.lucidorg.com" class="btn-main s5-btn-main" id="s5Cta">
+      Start Your First Decision — Free
       <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
-    <a href="mailto:hello@stratos.lucidorg.com" class="btn-ghost">Book Enterprise Demo</a>
+    <a href="https://cal.com/stratos/demo" class="btn-ghost s5-btn-demo">Book a Live Demo</a>
   </div>
-  <div class="s5-meta R d4">Pre-Seed · ELT Early Access · 2026 · app.stratos.lucidorg.com</div>
+
+  <!-- Trust pills -->
+  <div class="s5-trust R d4">
+    <div class="s5-pill">No credit card required</div>
+    <div class="s5-pill">Results in under 60 minutes</div>
+    <div class="s5-pill">Board-grade governance artifacts</div>
+  </div>
+
+  <div class="s5-meta R d5">Pre-Seed · ELT Early Access · 2026</div>
 </section>
 
 <div class="footer" style="flex-direction:column;gap:12px">
@@ -922,6 +1113,194 @@ document.querySelectorAll('.q-stat-n').forEach(el => countUp.observe(el));
     }
     showNext();
   });
+})();
+
+// ── S5: PARTICLE CONSTELLATION ──
+(function(){
+  const canvas = document.getElementById('s5Particles');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let w, h, animId;
+  let ctaRect = null;
+  const PARTICLE_COUNT = 60;
+
+  function resize(){
+    const s5 = document.getElementById('s5');
+    w = canvas.width = s5.offsetWidth;
+    h = canvas.height = s5.offsetHeight;
+  }
+
+  function createParticles(){
+    particles = [];
+    for(let i = 0; i < PARTICLE_COUNT; i++){
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.5 + 0.5,
+        alpha: Math.random() * 0.3 + 0.1,
+      });
+    }
+  }
+
+  function updateCtaRect(){
+    const cta = document.getElementById('s5Cta');
+    const s5 = document.getElementById('s5');
+    if(!cta || !s5) return;
+    const cr = cta.getBoundingClientRect();
+    const sr = s5.getBoundingClientRect();
+    ctaRect = {
+      cx: cr.left - sr.left + cr.width / 2,
+      cy: cr.top - sr.top + cr.height / 2,
+    };
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, w, h);
+    updateCtaRect();
+
+    particles.forEach(p => {
+      // Gentle drift toward CTA
+      if(ctaRect){
+        const dx = ctaRect.cx - p.x;
+        const dy = ctaRect.cy - p.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist > 50){
+          p.vx += (dx / dist) * 0.003;
+          p.vy += (dy / dist) * 0.003;
+        }
+      }
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Dampen
+      p.vx *= 0.998;
+      p.vy *= 0.998;
+
+      // Wrap
+      if(p.x < 0) p.x = w;
+      if(p.x > w) p.x = 0;
+      if(p.y < 0) p.y = h;
+      if(p.y > h) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,212,255,${p.alpha})`;
+      ctx.fill();
+    });
+
+    // Draw connections
+    for(let i = 0; i < particles.length; i++){
+      for(let j = i+1; j < particles.length; j++){
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 120){
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,212,255,${0.04 * (1 - dist/120)})`;
+          ctx.stroke();
+        }
+      }
+    }
+
+    animId = requestAnimationFrame(draw);
+  }
+
+  // Only run when S5 is near viewport
+  const s5Observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        resize();
+        createParticles();
+        draw();
+      } else {
+        cancelAnimationFrame(animId);
+      }
+    });
+  }, {threshold: 0.05});
+  s5Observer.observe(document.getElementById('s5'));
+
+  window.addEventListener('resize', ()=>{
+    resize();
+    createParticles();
+  });
+})();
+
+// ── S5: ROTATING DECISION SHOWCASE ──
+(function(){
+  const questions = [
+    'Should we acquire the Series B competitor before Q3?',
+    'Do we enter the EU market now or wait for regulatory clarity?',
+    'Should we restructure the exec team before the next funding round?',
+    'Is it time to sunset the legacy product line?',
+    'Do we take the strategic partner deal at this valuation?',
+    'Should we double engineering headcount for the platform rewrite?',
+    'Do we pursue the government contract or stay commercial-only?',
+  ];
+
+  const textEl = document.getElementById('s5ShowcaseText');
+  if(!textEl) return;
+  let currentIdx = 0;
+  let charIdx = 0;
+  let deleting = false;
+  let timeout;
+
+  function typeStep(){
+    const q = questions[currentIdx];
+    if(!deleting){
+      charIdx++;
+      textEl.textContent = q.slice(0, charIdx);
+      if(charIdx >= q.length){
+        // Pause before deleting
+        timeout = setTimeout(()=>{ deleting = true; typeStep(); }, 3000);
+        return;
+      }
+      timeout = setTimeout(typeStep, 28 + Math.random() * 30);
+    } else {
+      charIdx--;
+      textEl.textContent = q.slice(0, charIdx);
+      if(charIdx <= 0){
+        deleting = false;
+        currentIdx = (currentIdx + 1) % questions.length;
+        timeout = setTimeout(typeStep, 400);
+        return;
+      }
+      timeout = setTimeout(typeStep, 14);
+    }
+  }
+
+  // Start when visible
+  const showcaseObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        charIdx = 0;
+        typeStep();
+        showcaseObs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.3});
+  showcaseObs.observe(document.getElementById('s5'));
+})();
+
+// ── S5: STAGGERED ARTIFACT REVEAL ──
+(function(){
+  const artifactObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      const artifacts = e.target.querySelectorAll('.s5-artifact');
+      artifacts.forEach((el, i) => {
+        setTimeout(()=>{ el.classList.add('visible'); }, 200 + i * 180);
+      });
+      artifactObs.unobserve(e.target);
+    });
+  }, {threshold: 0.3});
+  const artWrap = document.getElementById('s5Artifacts');
+  if(artWrap) artifactObs.observe(artWrap);
 })();
 
 // ── EASTER EGG: Stat number scramble ──

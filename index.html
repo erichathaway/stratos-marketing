@@ -501,6 +501,95 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
   .pricing-grid{grid-template-columns:1fr}
 }
 
+/* ── COMPETITIVE ── */
+.comp{padding:96px 52px;background:var(--bg);text-align:center;position:relative}
+.comp-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--td);margin-bottom:12px}
+.comp-h{font-family:'Sora',sans-serif;font-size:clamp(24px,3.5vw,44px);font-weight:800;letter-spacing:-1.5px;color:var(--tp);line-height:1.05;margin-bottom:12px}
+.comp-sub{font-family:'Inter',sans-serif;font-size:14px;font-weight:300;color:var(--ts);margin-bottom:48px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto}
+.comp-tabs{display:flex;justify-content:center;gap:2px;margin-bottom:40px}
+.comp-tab{
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;padding:10px 24px;
+  background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--td);
+  cursor:pointer;transition:all .3s;
+}
+.comp-tab:first-child{border-radius:4px 0 0 4px}
+.comp-tab:last-child{border-radius:0 4px 4px 0}
+.comp-tab.active{background:rgba(0,212,255,.06);border-color:rgba(0,212,255,.2);color:var(--a1)}
+.comp-panel{display:none;max-width:820px;margin:0 auto}
+.comp-panel.active{display:block;animation:fadeIn .4s ease}
+.comp-section-label{
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--td);
+  text-align:left;padding:20px 0 10px;border-bottom:1px solid rgba(255,255,255,.04);
+}
+.comp-row{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
+  border-bottom:1px solid rgba(255,255,255,.03);
+  transition:background .25s;
+}
+.comp-row:hover{background:rgba(255,255,255,.012)}
+.comp-row-pain{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:500;
+  color:var(--ts);padding:16px 0;text-align:left;
+  padding-right:24px;
+}
+.comp-row-old{
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:300;
+  color:var(--tm);padding:16px 12px;text-align:left;
+  border-left:1px solid rgba(255,255,255,.03);
+}
+.comp-row-new{
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:400;
+  color:var(--a1);padding:16px 12px;text-align:left;
+  border-left:1px solid rgba(0,212,255,.06);
+  background:rgba(0,212,255,.02);
+}
+.comp-head{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.comp-head span{
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;padding:12px 0;text-align:left;
+}
+.comp-head span:nth-child(2){padding-left:12px;color:var(--td)}
+.comp-head span:nth-child(3){padding-left:12px;color:var(--a1)}
+.comp-cost-row{
+  display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:0;
+  border-bottom:1px solid rgba(255,255,255,.03);
+  transition:background .25s;
+}
+.comp-cost-row:hover{background:rgba(255,255,255,.012)}
+.comp-cost-label{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:500;
+  color:var(--ts);padding:14px 0;text-align:left;
+}
+.comp-cost-old{
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:300;
+  color:var(--tm);padding:14px 12px;text-align:left;
+  border-left:1px solid rgba(255,255,255,.03);
+}
+.comp-cost-new{
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:500;
+  color:var(--a1);padding:14px 12px;text-align:left;
+  border-left:1px solid rgba(0,212,255,.06);
+  background:rgba(0,212,255,.02);
+}
+.comp-cost-row:last-child{border-bottom:none}
+.comp-cost-row:last-child .comp-cost-label{color:var(--tp);font-weight:700}
+.comp-cost-row:last-child .comp-cost-old{color:var(--a3);font-weight:700}
+.comp-cost-row:last-child .comp-cost-new{color:var(--a4);font-weight:700}
+@media(max-width:900px){
+  .comp{padding:64px 28px}
+  .comp-row,.comp-head{grid-template-columns:1fr}
+  .comp-row-old,.comp-row-new{border-left:none;padding-left:0}
+  .comp-head span:nth-child(2),.comp-head span:nth-child(3){padding-left:0}
+  .comp-cost-row{grid-template-columns:1fr}
+  .comp-cost-old,.comp-cost-new{border-left:none;padding-left:0}
+  .comp-tab{font-size:9px;padding:8px 14px;letter-spacing:.08em}
+}
+
 /* ── TICKER ── */
 .ticker-wrap{overflow:hidden;padding:11px 0;background:rgba(0,212,255,.025);border-top:1px solid rgba(0,212,255,.07);border-bottom:1px solid rgba(0,212,255,.07);mask-image:linear-gradient(90deg,transparent,black 6%,black 94%,transparent)}
 .ticker-track{display:flex;white-space:nowrap;animation:tickMove 32s linear infinite}
@@ -784,6 +873,7 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
   <div class="pip" data-s="hiw"></div>
   <div class="pip" data-s="s4"></div>
   <div class="pip" data-s="pricing"></div>
+  <div class="pip" data-s="comp"></div>
   <div class="pip" data-s="s5"></div>
 </div>
 
@@ -1033,6 +1123,122 @@ body{background:var(--bg);color:var(--tp);font-family:'Inter',sans-serif;overflo
   <div class="pricing-note R d4">Per decision. No subscription required.</div>
 </section>
 
+<!-- ══ COMPETITIVE — Traditional vs StratOS ══ -->
+<section class="comp" id="comp">
+  <div class="comp-label R">Why It Matters</div>
+  <div class="comp-h R d1">The way decisions get made is broken.</div>
+  <div class="comp-sub R d1">No infrastructure. No governance. No memory. The loudest voice wins and the reasoning disappears when the meeting ends.</div>
+
+  <div class="comp-tabs R d2">
+    <button class="comp-tab active" data-panel="versus" onclick="compSwitch(this)">Traditional vs StratOS</button>
+    <button class="comp-tab" data-panel="cost" onclick="compSwitch(this)">The Hidden Cost</button>
+  </div>
+
+  <div class="comp-panel active R d3" id="comp-versus">
+    <div class="comp-head">
+      <span></span>
+      <span>Today</span>
+      <span>StratOS</span>
+    </div>
+    <div class="comp-section-label">How Decisions Break Down</div>
+    <div class="comp-row">
+      <div class="comp-row-pain">Decisions wait for calendars</div>
+      <div class="comp-row-old">Decision happens inside the meeting</div>
+      <div class="comp-row-new">Decision formed before the meeting</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-row-pain">The loudest voice wins</div>
+      <div class="comp-row-old">Strong personalities dominate</div>
+      <div class="comp-row-new">Independent viewpoints generated first</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-row-pain">Dissent is buried</div>
+      <div class="comp-row-old">Disagreement suppressed or delayed</div>
+      <div class="comp-row-new">Dissent captured and documented</div>
+    </div>
+    <div class="comp-section-label">What's Missing Today</div>
+    <div class="comp-row">
+      <div class="comp-row-pain">No decision infrastructure</div>
+      <div class="comp-row-old">Meetings and email threads</div>
+      <div class="comp-row-new">Structured analysis engine</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-row-pain">No governance record</div>
+      <div class="comp-row-old">Leaders reconstruct logic after the fact</div>
+      <div class="comp-row-new">Board-ready governance trail</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-row-pain">No institutional memory</div>
+      <div class="comp-row-old">Same debate repeats every quarter</div>
+      <div class="comp-row-new">Permanent decision memory</div>
+    </div>
+    <div class="comp-section-label">Where It Hits Hardest</div>
+    <div class="comp-row">
+      <div class="comp-row-pain">Board meeting prep</div>
+      <div class="comp-row-old">CEO gathers analysis manually</div>
+      <div class="comp-row-new">Decision packet ready with risks and dissent</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-row-pain">Cross-functional conflict</div>
+      <div class="comp-row-old">Departments argue live in meeting</div>
+      <div class="comp-row-new">Tradeoffs visible before meeting</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-row-pain">Investor diligence</div>
+      <div class="comp-row-old">Leaders explain decisions informally</div>
+      <div class="comp-row-new">Decision logic defensible and documented</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-row-pain">Urgent strategic decision</div>
+      <div class="comp-row-old">Wait for calendars to align</div>
+      <div class="comp-row-new">Runs anytime -- no calendar dependency</div>
+    </div>
+  </div>
+
+  <div class="comp-panel" id="comp-cost">
+    <div class="comp-head">
+      <span></span>
+      <span>Today</span>
+      <span>StratOS</span>
+    </div>
+    <div class="comp-cost-row">
+      <div class="comp-cost-label">Executive prep time</div>
+      <div class="comp-cost-old">5-20 hrs per leader</div>
+      <div class="comp-cost-new">Automated synthesis</div>
+    </div>
+    <div class="comp-cost-row">
+      <div class="comp-cost-label">Total leadership time</div>
+      <div class="comp-cost-old">20-60 hrs</div>
+      <div class="comp-cost-new">1-2 hr review</div>
+    </div>
+    <div class="comp-cost-row">
+      <div class="comp-cost-label">Decision cycle time</div>
+      <div class="comp-cost-old">Days - weeks</div>
+      <div class="comp-cost-new">Hours</div>
+    </div>
+    <div class="comp-cost-row">
+      <div class="comp-cost-label">Meetings required</div>
+      <div class="comp-cost-old">3-8 meetings</div>
+      <div class="comp-cost-new">1 review session</div>
+    </div>
+    <div class="comp-cost-row">
+      <div class="comp-cost-label">Decision traceability</div>
+      <div class="comp-cost-old">Low</div>
+      <div class="comp-cost-new">Complete</div>
+    </div>
+    <div class="comp-cost-row">
+      <div class="comp-cost-label">Institutional memory</div>
+      <div class="comp-cost-old">Lost after discussion</div>
+      <div class="comp-cost-new">Permanent</div>
+    </div>
+    <div class="comp-cost-row">
+      <div class="comp-cost-label">Annual cost (50-200 major decisions)</div>
+      <div class="comp-cost-old">$400k - $7M</div>
+      <div class="comp-cost-new">Mostly review time</div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ S5: CTA — Interactive Decision Engine ══ -->
 <section class="scene s5" id="s5">
   <div class="s5-bg"></div>
@@ -1143,7 +1349,7 @@ document.querySelectorAll('.R').forEach(el=>io.observe(el));
 
 const nav=document.getElementById('nav');
 const pips=document.querySelectorAll('.pip');
-const sceneIds=['s1','s2','s3','hiw','s4','pricing','s5'];
+const sceneIds=['s1','s2','s3','hiw','s4','pricing','comp','s5'];
 window.addEventListener('scroll',()=>{
   nav.classList.toggle('solid',window.scrollY>50);
   const mid=window.innerHeight*.5;
@@ -1214,6 +1420,14 @@ document.querySelectorAll('.q-stat-n').forEach(el => countUp.observe(el));
     showNext();
   });
 })();
+
+// ── COMPETITIVE TAB SWITCH ──
+function compSwitch(btn){
+  document.querySelectorAll('.comp-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.comp-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('comp-'+btn.dataset.panel).classList.add('active');
+}
 
 // ── S5: PARTICLE CONSTELLATION ──
 (function(){
